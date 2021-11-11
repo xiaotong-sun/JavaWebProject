@@ -237,8 +237,9 @@ figure {
 .slide__img {
   position: relative;
   overflow: hidden;
-  padding-top: 65%;
-  width: 100%;
+  padding-top: 80%;
+  height: auto;
+  width: 65%;
 }
 .slide__img figure {
   position: absolute;
