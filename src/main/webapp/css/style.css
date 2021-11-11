@@ -188,56 +188,55 @@ figure {
 
 .slide {
   display: flex;
-  width: 50vw;
+  width: 45vw;
   height: 100%;
   padding: 20vh 0;
 }
 .slide--1 {
-  align-items: flex-start;
+  align-items: center;
 }
 .slide--2 {
-  align-items: flex-end;
+  align-items: center;
 }
 .slide--3 {
   align-items: center;
 }
-.slide:last-child {
-  width: 65vw;
-  padding-right: 15vw;
-}
+
 .slide__inner {
   position: relative;
-  padding-left: 15vw;
+  padding-left: 10vw;
   width: 100%;
 }
 .slide__sub-title {
   position: absolute;
   top: 15%;
   left: 5vw;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1vw;
 }
 .slide__title {
   position: absolute;
-  top: 7.5%;
-  left: 7.5vw;
+  top: 15%;
+  left: 33vw;
   color: #fff;
-  font-size: 4vw;
+  font-size: 2vw;
+  font-family: 楷体;
   z-index: 2;
   overflow: hidden;
 }
 .slide__project {
   color: #fff;
   position: absolute;
-  top: 100%;
-  right: 5%;
-  font-size: 1.15vw;
-  padding-top: 1.5vw;
+  top: 30%;
+  right: 2%;
+  font-size: 1vw;
+  font-family: 楷体;
+  padding-top: 0vw;
 }
 .slide__img {
   position: relative;
   overflow: hidden;
-  padding-top: 80%;
+  padding-top: 85%;
   height: auto;
   width: 65%;
 }
