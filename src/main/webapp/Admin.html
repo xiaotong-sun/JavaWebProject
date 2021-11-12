@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <title>管理员登录</title>
     <link rel="stylesheet" type="text/css" href="./css/Login.css"/>
-
-
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#login-btn").click(function () {
+                $.get("admin/login", $("#login-form").serialize(), function (data) {
+                    if (data["flag"]) {
+                        location.href = "Houtai.html";
+                    } else {
+                        $("#error-msg").html(data["errorMsg"]);
+                    }
+                });
+            });
+        })
+    </script>
 </head>
 <body>
 <div id="login">
     <h1>管理员登录</h1>
-    <form method="post">
-        <input type="text" required="required" placeholder="用户名" name="u"/>
-        <input type="password" required="required" placeholder="密码" name="p"/>
-        <button class="but" type="submit">登录</button>
+    <form id="login-form">
+        <input type="text" required="required" placeholder="用户名" name="username"/>
+        <input type="password" required="required" placeholder="密码" name="password"/>
+        <div id="login-btn" class="but" style="width: 30px;">登录</div>
+        <div id="error-msg" ></div>
     </form>
 </div>
 </body>

@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet("/AdminServlet")
+@WebServlet("/admin/*")
 public class AdminServlet extends BaseServlet {
     private AdminService service = new AdminServiceImpl();
 
