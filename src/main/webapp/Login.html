@@ -4,16 +4,49 @@
     <meta charset="UTF-8">
     <title>登录</title>
     <link rel="stylesheet" type="text/css" href="./css/Login.css"/>
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            // 点击验证码更新图片
+            $("#code").click(function () {
+                this.src = "VerificationCodeServlet?time=" + new Date().getTime();
+            });
+
+            // 登陆按钮
+            $("#login-btn").click(function () {
+                // 请求后台登陆，参数分别为：请求路径，请求数据，回调函数
+                $.get("user/login", $("#login-form").serialize(), function (data) {
+                    if (data["flag"]) {
+                        // 登陆成功
+                        location.href = "HomePage.html";
+                    } else {
+                        // 登陆失败，显示错误信息
+                        $("#error-msg").html(data["errorMsg"]);
+                    }
+                });
+            });
+        });
+    </script>
+
 </head>
 <body>
 <div id="login">
-<h1>登录</h1>
-<form method="post">
-    <input type="text" required="required" placeholder="用户名" name="u"/>
-    <input type="password" required="required" placeholder="密码" name="p"/>
-    <button class="but" type="submit">登录</button>
-    <a id="register" href="register.html">没有账户，注册？</a>
-</form>
+    <h1>登录</h1>
+    <form id="login-form">
+        <input type="text" required="required" placeholder="用户名" name="username"/>
+        <input type="password" required="required" placeholder="密码" name="password"/>
+
+        <!--        验证码输入框-->
+        <input required name="verificationCode" type="text" placeholder="验证码">
+        <img id="code" src="VerificationCodeServlet" alt="">
+
+        <!--        登陆按钮-->
+        <div id="login-btn" class="but">登录</div>
+        <a id="register" href="register.html">没有账户，注册？</a>
+
+        <!--        登陆错误提示信息-->
+        <div id="error-msg" style="color: white"></div>
+    </form>
 </div>
 </body>
 </html>
