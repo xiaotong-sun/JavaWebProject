@@ -7,47 +7,37 @@ Primary style
   box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/*html {*/
+/*  font-size: 62.5%;*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+/*}*/
 
-body {
-  font-size: 1.6rem;
+.shopbody {
+  font-size: 0.5mm;
   font-family: "Source Sans Pro", sans-serif;
   color: #2b3e51;
   background-color: #ecf0f1;
 }
 
-a {
-  color: #2c97de;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-}
-
 main {
   text-align: center;
-  padding: 2em 5%;
 }
 
-h1 {
-  font-size: 2rem;
-  padding: 3em 0 .8em;
-}
-@media only screen and (min-width: 768px) {
-  h1 {
-    font-size: 3.2rem;
-  }
-}
+/*h1 {*/
+/*  font-size: 2rem;*/
+/*  padding: 3em 0 .8em;*/
+/*}*/
+/*@media only screen and (min-width: 768px) {*/
+/*  h1 {*/
+/*    font-size: 3.2rem;*/
+/*  }*/
+/*}*/
 
 .cd-add-to-cart {
   display: inline-block;
-  padding: 1.2em 1.8em;
-  background: #2c97de;
+  padding: 0.5em 0.5em;
+  background: #88c9f1;
   border-radius: 50em;
   text-transform: uppercase;
   color: #ffffff;
@@ -429,7 +419,7 @@ Main Components
   display: inline-block;
   float: left;
   /* the image height determines the height of the list item - in this case height = width */
-  width: 50px;
+  width: 20px;
 }
 .cd-cart .product-image img {
   display: block;
