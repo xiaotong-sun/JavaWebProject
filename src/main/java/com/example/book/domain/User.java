@@ -2,11 +2,12 @@ package com.example.book.domain;
 
 public class User {
     private int uid;
-    private String username;
-    private String password;
-    private String email;
-    private String nickname;
-    private double balance;
+    private String username;    // 用户名
+    private String password;    // 密码
+    private String email;       // 邮箱
+    private String nickname;    // 昵称
+    private String state;       // 激活状态
+    private String code;        // 激活码
 
     @Override
     public String toString() {
@@ -16,8 +17,25 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", balance=" + balance +
+                ", state='" + state + '\'' +
+                ", code='" + code + '\'' +
                 '}';
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public int getUid() {
@@ -58,13 +76,5 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
     }
 }

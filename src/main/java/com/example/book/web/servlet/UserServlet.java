@@ -4,11 +4,15 @@ import com.example.book.domain.ResultInfo;
 import com.example.book.domain.User;
 import com.example.book.service.UserService;
 import com.example.book.service.impl.UserServiceImpl;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 @WebServlet("/user/*")
 public class UserServlet extends BaseServlet {
@@ -18,6 +22,7 @@ public class UserServlet extends BaseServlet {
     登陆方法
      */
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String code = request.getParameter("verificationCode");
@@ -47,5 +52,48 @@ public class UserServlet extends BaseServlet {
         }
 
         writeValue(info, response);
+    }
+
+    public void regist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("utf-8");
+        Map<String, String[]> map = request.getParameterMap();
+
+        // 封装数据
+        User user = new User();
+        try {
+            BeanUtils.populate(user, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Servlet: " + user);
+
+        // 进行注册
+        boolean flag = service.regist(user);
+
+        ResultInfo info = new ResultInfo();
+        if (flag) {
+            // 注册成功
+            info.setFlag(true);
+//            info.setData(user);
+        } else {
+            // 注册失败
+            info.setFlag(false);
+            info.setErrorMsg("用户名重复！");
+        }
+        writeValue(info, response);
+    }
+
+    public void active(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String code = request.getParameter("code");
+
+        boolean flag = service.active(code);
+        if (flag) {
+            // 激活成功
+            response.sendRedirect(request.getContextPath() + "/HomePage.html");
+        }else {
+            // 激活失败
+            response.sendRedirect(request.getContextPath() + "/regist_error.html");
+        }
+
     }
 }

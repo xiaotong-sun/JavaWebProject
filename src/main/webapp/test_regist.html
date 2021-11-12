@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        $(function () {
+            // 按钮添加点击事件
+            $("#regist").click(function () {
+                // Ajax 异步请求，进行注册
+                $.get("user/regist", $("#regist-form").serialize(), function (data) {
+                    if (data["flag"]){
+                        // 注册成功，跳转页面
+                        location.href = 'test_regist_ok.html';
+                    }else {
+                        $("#error-msg").html(data["errorMsg"]);
+                    }
+                });
+            })
+        });
+    </script>
+
+</head>
+<body>
+
+<div style="width: 400px" class="mx-auto">
+    <form id="regist-form">
+        <div class="form-group">
+            <label for="username">用户名</label>
+            <input type="email" class="form-control" id="username" name="username" aria-describedby="usernameHelp">
+            <small id="usernameHelp" class="form-text text-muted">6-12位的字母或数字</small>
+        </div>
+        <div class="form-group">
+            <label for="nickname">昵称</label>
+            <input type="email" class="form-control" id="nickname" name="nickname" aria-describedby="nicknameHelp">
+            <small id="nicknameHelp" class="form-text text-muted">起一个好听的昵称吧</small>
+        </div>
+        <div class="form-group">
+            <label for="email">电子邮箱</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">我们不会分享你的电子邮箱</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">密码</label>
+            <input type="password"  name="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp">
+            <small id="passwordHelp" class="form-text text-muted">6-18位字母，数字或符号</small>
+        </div>
+
+        <button id="regist" type="submit" class="btn btn-primary">注册</button>
+        <div id="error-msg" class="alert"></div>
+    </form>
+</div>
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
