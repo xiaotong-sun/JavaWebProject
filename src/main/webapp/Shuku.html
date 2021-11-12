@@ -60,18 +60,20 @@
                                     <img src="img/${books[i]["picture"]}" class="thumb">
                                     <h1><a href="Details.html?bid=${books[i]["bid"]}">${books[i]["title"]}</a></h1>
                                     <p>售价：${books[i]["price"]}￥</p>
+                                    <div class="add-to-cart">添加到购物车</div>
                                 </article>`;
                     $("#gallery-wrapper").append(book);
                 }
+
+                // 添加购物车按钮点击事件
+                $(".add-to-cart").click(function () {
+                    $("#shopping-cart").addClass("shopping-cart-visible");
+                    let cartNumber = $("#cart-number");
+                    let number = parseInt(cartNumber.html());
+                    cartNumber.html(number + 1);
+                });
             });
 
-            // 添加购物车按钮点击事件
-            $(".add-to-cart").click(function () {
-                $("#shopping-cart").addClass("shopping-cart-visible");
-                let cartNumber = $("#cart-number");
-                let number = parseInt(cartNumber.html());
-                cartNumber.html(number + 1);
-            });
 
             // 点击购物车跳转购物车页面
             $("#shopping-cart").click(function () {
@@ -95,6 +97,8 @@
     </div>
 </a>
 
+
+<!--标题-->
 <section class="htmleaf-container">
     <header class="htmleaf-header">
         <h1>藏书阁 <span>Library</span></h1>
@@ -108,91 +112,16 @@
 </section>
 
 
-
+<!--书籍面板-->
 <section id="gallery-wrapper">
-    <article class="white-panel">
-        <img src="img/1.jpg" class="thumb">
-        <h1><a href="Details.html">《白夜行》</a></h1>
-        <p>售价：32￥</p>
-        <div class="add-to-cart">添加到购物车</div>
-    </article>
-    <article class="white-panel">
-        <img src="img/2.jpg" class="thumb">
-        <h1><a href="#">《追风筝的人》</a></h1>
-        <p>售价：25￥</p>
-        <div class="add-to-cart">添加到购物车</div>
-    </article>
-    <article class="white-panel">
-        <img src="img/3.jpg" class="thumb">
-        <h1><a href="#">《索拉里斯星》</a></h1>
-        <p>售价：35￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/4.jpg" class="thumb">
-        <h1><a href="#">《平凡的世界》</a></h1>
-        <p>售价：80￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/5.jpg" class="thumb">
-        <h1><a href="#">《杀死一只知更鸟》</a></h1>
-        <p>售价：32￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/6.jpg" class="thumb">
-        <h1><a href="#">《乡土中国》</a></h1>
-        <p>售价：40￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/7.jpg" class="thumb">
-        <h1><a href="#">《星之继承者三部曲》</a></h1>
-        <p>售价：128.30￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/8.jpg" class="thumb">
-        <h1><a href="#">《信》</a></h1>
-        <p>售价：38.4￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/9.jpg" class="thumb">
-        <h1><a href="#">《你当像鸟飞往你的山》</a></h1>
-        <p>售价：47.2￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/10.jpg" class="thumb">
-        <h1><a href="#">《82年生的金智英》</a></h1>
-        <p>售价：36￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/11.jpg" class="thumb">
-        <h1><a href="#">《三体》</a></h1>
-        <p>售价：32￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/12.jpg" class="thumb">
-        <h1><a href="#">《美丽新世界》</a></h1>
-        <p>售价：36￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/13.jpg" class="thumb">
-        <h1><a href="#">《万历十五年》</a></h1>
-        <p>售价：32￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/14.jpg" class="thumb">
-        <h1><a href="#">《人类简史》</a></h1>
-        <p>售价：54.40￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/15.jpg" class="thumb">
-        <h1><a href="#">《文化失忆》</a></h1>
-        <p>售价：110.40￥</p>
-    </article>
-    <article class="white-panel">
-        <img src="img/16.jpg" class="thumb">
-        <h1><a href="#">《全球通史》</a></h1>
-        <p>售价：134.40￥</p>
-    </article>
+<!--    <article class="white-panel">-->
+<!--        <img src="img/1.jpg" class="thumb">-->
+<!--        <h1><a href="Details.html">《白夜行》</a></h1>-->
+<!--        <p>售价：32￥</p>-->
+<!--        <div class="add-to-cart">添加到购物车</div>-->
+<!--    </article>-->
 </section>
+
 
 <!--购物车组件, 组件的样式在 shuku.css 中定义-->
 <div id="shopping-cart" class="shopping-cart">
