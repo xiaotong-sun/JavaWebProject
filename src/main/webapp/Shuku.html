@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="zh">
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>藏书阁</title>
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <link rel="stylesheet" href="css/shuku.css">
+    <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="css/gouwuche/style.css"> <!-- Resource style -->
-    <style type="text/css">
+    <style>
         #gallery-wrapper {
             position: relative;
             max-width: 75%;
@@ -50,8 +49,8 @@
         }
     </style>
 
-    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <script src="jquery/jquery-3.6.0.min.js"></script>
+
     <script>
         $(function () {
             // 页面加载完毕，请求后台返回书库
@@ -64,7 +63,15 @@
                                 </article>`;
                     $("#gallery-wrapper").append(book);
                 }
-            })
+            });
+
+            // 添加购物车按钮点击事件
+            $(".add-to-cart").click(function () {
+                $("#shopping-cart").addClass("shopping-cart-visible");
+                let cartNumber = $("#cart-number");
+                let number = parseInt(cartNumber.html());
+                cartNumber.html(number +1);
+            });
         });
     </script>
 </head>
@@ -73,6 +80,7 @@
 <figure class="logo logo--top js-trigger">
     <img src="img/1.svg">
 </figure>
+
 <a target="_blank" class="resize">
     <div class="resize__inner">
         <figure class="logo logo--resize">
@@ -94,23 +102,18 @@
     </header>
 </section>
 
-
 <section id="gallery-wrapper">
     <article class="white-panel">
         <img src="img/1.jpg" class="thumb">
         <h1><a href="Details.html">《白夜行》</a></h1>
         <p>售价：32￥</p>
-        <main>
-            <a href="#0" class="cd-add-to-cart" data-price="25.99">添加到购物车</a>
-        </main>
+        <div class="add-to-cart">添加到购物车</div>
     </article>
     <article class="white-panel">
         <img src="img/2.jpg" class="thumb">
         <h1><a href="#">《追风筝的人》</a></h1>
         <p>售价：25￥</p>
-        <main>
-            <a href="#0" class="cd-add-to-cart" data-price="25.99">添加到购物车</a>
-        </main>
+        <div class="add-to-cart">添加到购物车</div>
     </article>
     <article class="white-panel">
         <img src="img/3.jpg" class="thumb">
@@ -184,22 +187,17 @@
     </article>
 </section>
 
-<div class="cd-cart-container empty">
-    <a href="#0" class="cd-cart-trigger">
-        <ul class="count"> <!-- cart items count -->
-            <li>0</li>
-            <li>0</li>
-        </ul> <!-- .count -->
-    </a>
+<!--购物车组件, 组件的样式在 shuku.css 中定义-->
+<div id="shopping-cart" class="shopping-cart">
+    <!--购物车图标-->
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-cart"
+         viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </svg>
+    <!--书籍数量-->
+    <span id="cart-number" class="cart-number">0</span>
+</div>
 
-    <div class="cd-cart">
-        <div class="wrapper">
-        </div>
-    </div> <!-- .cd-cart -->
-</div> <!-- cd-cart-container -->
-
-<script>window.jQuery || document.write('<script src="jquery/jquery-3.6.0.min.js"><\/script>')</script>
-<script src="js/gouwuche/main.js"></script> <!-- Resource jQuery -->
 <script src="js/pinterest_grid.js"></script>
 <script type="text/javascript">
     $(function () {
