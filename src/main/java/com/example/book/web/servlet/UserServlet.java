@@ -8,12 +8,10 @@ import com.example.book.service.impl.UserServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
 
 
-import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
@@ -60,7 +58,7 @@ public class UserServlet extends BaseServlet {
     }
 
 
-    public void regist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         Map<String, String[]> map = request.getParameterMap();
 
@@ -74,7 +72,7 @@ public class UserServlet extends BaseServlet {
         System.out.println("Servlet: " + user);
 
         // 进行注册
-        boolean flag = service.regist(user);
+        boolean flag = service.register(user);
 
         ResultInfo info = new ResultInfo();
         if (flag) {

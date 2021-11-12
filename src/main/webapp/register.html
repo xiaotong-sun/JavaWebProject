@@ -1,21 +1,64 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <title>注册</title>
-  <link rel="stylesheet" type="text/css" href="./css/Login.css"/>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" type="text/css" href="./css/Login.css"/>
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            // 给密码输入框添加一个失去焦点事件，判断两次密码是否一致
+            $("#password").blur(function () {
+                if ($("#password").val() !== $("#confirm").val()){
+                    $("#password-msg").html("两次密码不一致");
+                }else {
+                    $("#password-msg").html("");
+                }
+            });
+            $("#confirm").blur(function () {
+                if ($("#password").val() !== $("#confirm").val()){
+                    $("#password-msg").html("两次密码不一致");
+                }else {
+                    $("#password-msg").html("");
+                }
+            });
+
+            // 注册按钮
+            $("#register-btn").click(function () {
+                $.get("user/register", $("#register-form").serialize(), function (data) {
+                    if (data["flag"]){
+                        // 注册成功，跳转到注册成功页面，提示用户邮箱激活
+                        location.href = "...";
+                    }else {
+                        // 注册失败，提示信息
+                        $("#error-msg").html(data["errorMsg"]);
+                    }
+                })
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="login">
-  <h1>注册</h1>
-  <form method="post">
-    <input type="text" required="required" placeholder="用户名" name="u"/>
-    <input type="password" required="required" placeholder="密码" name="p"/>
-    <input type="password" required="required" placeholder="确认密码" name="confirm"/>
-    <input type="email" required="required" placeholder="电子邮箱" name="email"/>
+    <h1>注册</h1>
+    <form id="register-form">
+        <input type="text" required="required" placeholder="用户名" name="username"/>
+        <input type="text" required="required" placeholder="昵称" name="nickname"/>
+        <input id="password" type="password" required="required" placeholder="密码" name="password"/>
 
-    <button class="but" type="submit">注册</button>
-  </form>
+        <!--密码和确认密码不一致提示信息-->
+        <small id="password-msg" style="color: white"></small>
+        <input id="confirm" type="password" required="required" placeholder="确认密码" name="confirm"/>
+        <input type="email" required="required" placeholder="电子邮箱" name="email"/>
+
+
+        <!--注册按钮-->
+        <div id="register-btn" class="but" type="submit">注册</div>
+
+        <!--注册失败登陆信息-->
+        <div id="error-msg" style="color: white;"></div>
+    </form>
 </div>
 </body>
 </html>

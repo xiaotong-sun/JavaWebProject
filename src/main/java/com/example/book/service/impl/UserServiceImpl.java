@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean regist(User user) {
+    public boolean register(User user) {
         if (dao.findByUsername(user.getUsername()) != null) {
             // 如果用户名存在
             return false;

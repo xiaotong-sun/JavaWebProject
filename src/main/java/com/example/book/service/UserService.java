@@ -9,7 +9,7 @@ public interface UserService {
     User login(String username, String password);
 
     // 注册一个用户
-    boolean regist(User user);
+    boolean register(User user);
 
     // 激活一个用户
     boolean active(String code);
