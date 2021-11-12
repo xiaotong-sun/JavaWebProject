@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tony图书网</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/shuku.css">
+  <link rel="stylesheet" href="css/default.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="jquery/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function () {
+      $.get("user/getUser",{},function (data) {
+        if (data["flag"]){
+          // 已经登陆
+          $("#login-btn").hide();
+          $("#logout-btn").show();
+          $("#username").html(data["data"].username);
+        }else {
+          $("#login-btn").show();
+          $("#logout-btn").hide();
+        }
+      });
+    })
+  </script>
+</head>
+<body>
+
+<figure class="logo logo--top js-trigger">
+  <img src="img/1.svg">
+</figure>
+<a target="_blank" class="resize">
+  <div class="resize__inner">
+    <figure class="logo logo--resize">
+      <img src="img/1.svg">
+    </figure>
+    <p>Please view in <span>full page</span> mode</p>
+  </div>
+</a>
+
+<section class="htmleaf-container">
+  <header class="htmleaf-header">
+    <h1>购买记录<span>Record</span></h1>
+    <div class="htmleaf-links">
+      <a class="htmleaf-icon icon-htmleaf-home-outline" href="HomePage.html" title="首页"
+         target="_self"><span>首页</span></a>
+      <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="Shuku.html" title="返回"
+         target="_self"><span> 返回</span></a>
+    </div>
+  </header>
+</section>
+
+<section>
+  <table class="table table-hover table-dark mx-auto" style="width: 1200px">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">书籍</th>
+      <th scope="col">价格</th>
+      <th scope="col">数量</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

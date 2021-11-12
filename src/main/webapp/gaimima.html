@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>修改密码</title>
+  <link rel="stylesheet" type="text/css" href="./css/Login.css"/>
+  <script src="jquery/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div id="login">
+  <h1>密码修改</h1>
+  <form id="login-form">
+    <input type="password" required="required" placeholder="原始密码" name="old password"/>
+    <input type="password" required="required" placeholder="新密码" name="password"/>
+    <input type="password" required="required" placeholder="确认密码" name="conformists"/>
+
+    <!--        验证码输入框-->
+    <input required name="verificationCode" type="text" placeholder="验证码">
+    <img id="code" src="VerificationCodeServlet" alt="">
+
+    <!--        登陆按钮-->
+    <div id="login-btn" class="but" style="width: 30px">提交</div>
+  </form>
+</div>
+</body>
+</html>
