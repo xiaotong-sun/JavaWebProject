@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/default.css">
 	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="css/gouwuche/style.css"> <!-- Resource style -->
 	<style type="text/css">
 		#gallery-wrapper {
 		position: relative;
@@ -42,9 +43,6 @@
 		transition: all 0.3s ease-in-out;
 		}
 	</style>
-	<!--[if IE]>
-		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
-	<![endif]-->
 </head>
 <body>
 
@@ -75,11 +73,17 @@
 			<img src="img/1.jpg" class="thumb">
 			<h1><a href="Details.html">《白夜行》</a></h1>
 	  		<p>售价：32￥</p>
+			<main>
+				<a href="#0" class="cd-add-to-cart" data-price="25.99">添加到购物车</a>
+			</main>
 		</article>
 		<article class="white-panel">
 			<img src="img/2.jpg" class="thumb">
 			<h1><a href="#">《追风筝的人》</a></h1>
 	  		<p>售价：25￥</p>
+			<main>
+				<a href="#0" class="cd-add-to-cart" data-price="25.99">添加到购物车</a>
+			</main>
 		</article>
 		<article class="white-panel">
 			<img src="img/3.jpg" class="thumb">
@@ -153,7 +157,22 @@
 		</article>
     </section>
 
-	<script src="jquery/jquery-3.6.0.min.js"></script>
+	<div class="cd-cart-container empty">
+		<a href="#0" class="cd-cart-trigger">
+			<ul class="count"> <!-- cart items count -->
+				<li>0</li>
+				<li>0</li>
+			</ul> <!-- .count -->
+		</a>
+
+		<div class="cd-cart">
+			<div class="wrapper">
+			</div>
+		</div> <!-- .cd-cart -->
+	</div> <!-- cd-cart-container -->
+
+	<script>window.jQuery || document.write('<script src="jquery/jquery-3.6.0.min.js"><\/script>')</script>
+	<script src="js/gouwuche/main.js"></script> <!-- Resource jQuery -->
 	<script src="js/pinterest_grid.js"></script>
 	<script type="text/javascript">
 		$(function(){
