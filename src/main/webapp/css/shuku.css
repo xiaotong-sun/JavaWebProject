@@ -8,6 +8,10 @@
     visibility: hidden;
 }
 
+.shopping-cart:hover{
+    cursor: pointer;
+}
+
 .shopping-cart-visible{
     visibility: visible;
 }

@@ -70,8 +70,13 @@
                 $("#shopping-cart").addClass("shopping-cart-visible");
                 let cartNumber = $("#cart-number");
                 let number = parseInt(cartNumber.html());
-                cartNumber.html(number +1);
+                cartNumber.html(number + 1);
             });
+
+            // 点击购物车跳转购物车页面
+            $("#shopping-cart").click(function () {
+                location.href = "....";
+            })
         });
     </script>
 </head>
