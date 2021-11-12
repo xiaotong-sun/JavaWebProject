@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony图书网</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/shuku.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style type="text/css">
+        .r{
+            font-family: 楷体;
+            position:absolute;
+            right:10px;
+            bottom:10px;
+        }
+    </style>
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $.get("user/getUser",{},function (data) {
+                if (data["flag"]){
+                    // 已经登陆
+                    $("#login-btn").hide();
+                    $("#logout-btn").show();
+                    $("#username").html(data["data"].username);
+                }else {
+                    $("#login-btn").show();
+                    $("#logout-btn").hide();
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+
+<figure class="logo logo--top js-trigger">
+    <img src="img/1.svg">
+</figure>
+<a target="_blank" class="resize">
+    <div class="resize__inner">
+        <figure class="logo logo--resize">
+            <img src="img/1.svg">
+        </figure>
+        <p>Please view in <span>full page</span> mode</p>
+    </div>
+</a>
+
+<section class="htmleaf-container">
+    <header class="htmleaf-header">
+        <h1>购物车<span>List</span></h1>
+        <div class="htmleaf-links">
+            <a class="htmleaf-icon icon-htmleaf-home-outline" href="HomePage.html" title="首页"
+               target="_self"><span>首页</span></a>
+            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="Shuku.html" title="返回"
+               target="_self"><span> 返回</span></a>
+        </div>
+    </header>
+</section>
+
+<section>
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">书籍</th>
+            <th scope="col">价格</th>
+            <th scope="col">数量</th>
+            <th scope="col">删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">合计</th>
+            <th scope="col">本</th>
+            <th scope="col">元</th>
+        </tr>
+        </thead>
+    </table>
+</section>
+
+<footer class="r">
+    <div>
+        <button type="button" class="btn btn-secondary btn-lg btn-block">一键购买</button>
+    </div>
+</footer>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
