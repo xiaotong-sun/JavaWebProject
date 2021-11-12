@@ -1,6 +1,6 @@
 .idea
 target
-*.imi
+*.iml
 
 
 ### Java template
