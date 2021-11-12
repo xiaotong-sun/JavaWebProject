@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 .idea
 target
 *.imi
-=======
+
+
 ### Java template
 # Compiled class file
 *.class
@@ -28,7 +28,4 @@ target
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-.idea
-target
 
->>>>>>> c218264b0db50d133669d3a85e60798fbb1c9752
