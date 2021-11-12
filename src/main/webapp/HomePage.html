@@ -8,6 +8,24 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css" /><!--CSS RESET-->
 <!--    <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">&lt;!&ndash;演示页面样式，使用时可以不引用&ndash;&gt;-->
     <link rel="stylesheet" href="./css/style.css">
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $.get("user/getUser",{},function (data) {
+               if (data["flag"]){
+                   // 已经登陆
+                   $("#login-btn").hide();
+                   $("#logout-btn").show();
+                   $("#username").html(data["data"].username);
+               }else {
+                   $("#login-btn").show();
+                   $("#logout-btn").hide();
+               }
+            });
+
+
+        })
+    </script>
 </head>
 <body>
 
@@ -27,7 +45,13 @@
     Hi
 </a>
 
-<a href="Login.html" target="_self" rel="nofollow" class="menu-btn js-menu-btn">
+
+<a id="logout-btn" href="user/logout" target="_self" rel="nofollow" class="menu-btn js-menu-btn">
+    <span id="username" style="color: white; margin-right: 10px"></span>
+    <div id="logout" class="menu-btn__text">退出登陆</div>
+</a>
+
+<a id="login-btn" href="Login.html" target="_self" rel="nofollow" class="menu-btn js-menu-btn">
     <div class="menu-btn__circles">
         <span class="menu-btn__circle menu-btn__circle--top js-menu-btn__circle--top"></span>
         <span class="menu-btn__circle menu-btn__circle--bottom js-menu-btn__circle--bottom"></span>

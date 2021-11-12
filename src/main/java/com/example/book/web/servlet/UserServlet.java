@@ -43,6 +43,7 @@ public class UserServlet extends BaseServlet {
                 // 登陆成功
                 info.setFlag(true);
                 info.setData(user);
+                request.getSession().setAttribute("user", user);
             } else {
                 // 登陆失败
                 info.setFlag(false);
@@ -94,11 +95,28 @@ public class UserServlet extends BaseServlet {
         if (flag) {
             // 激活成功
             response.sendRedirect(request.getContextPath() + "/HomePage.html");
-        }else {
+        } else {
             // 激活失败
             response.sendRedirect(request.getContextPath() + "/regist_error.html");
         }
 
     }
 
+    public void getUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ResultInfo info = new ResultInfo();
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            info.setFlag(true);
+            info.setData(user);
+        } else {
+            info.setFlag(false);
+        }
+        writeValue(info, response);
+    }
+
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().invalidate();
+
+        response.sendRedirect(request.getContextPath() + "/HomePage.html");
+    }
 }
