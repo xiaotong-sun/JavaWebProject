@@ -34,31 +34,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void add(User user) {
-        String sql = "insert into user(username, password, email, nickname,code) values (?,?,?,?,?)";
+        String sql = "insert into user(username, password, email, nickname) values (?,?,?,?)";
 
         template.update(sql,
                 user.getUsername(),
                 user.getPassword(),
                 user.getEmail(),
-                user.getNickname(),
-                user.getCode());
-    }
-
-    @Override
-    public void active(String code) {
-        String sql = "update user set state = ? where code = ?";
-
-        template.update(sql, "Y", code);
-    }
-
-    @Override
-    public User findByCode(String code) {
-        String sql = "select * from user where code = ?";
-
-        try {
-            return template.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), code);
-        } catch (Exception e) {
-            return null;
-        }
+                user.getNickname());
     }
 }

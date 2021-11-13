@@ -5,32 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony图书网</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/shuku.css">
     <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <style type="text/css">
-        .r{
-            font-family: 楷体;
-            position:absolute;
-            right:10px;
-            bottom:10px;
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/user-info.css">
+
+    <style>
+        .r {
+            font-family: 楷体, serif;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
         }
     </style>
     <script src="jquery/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
-            $.get("user/getUser",{},function (data) {
-                if (data["flag"]){
-                    // 已经登陆
-                    $("#login-btn").hide();
-                    $("#logout-btn").show();
-                    $("#username").html(data["data"].username);
-                }else {
-                    $("#login-btn").show();
-                    $("#logout-btn").hide();
+            // 页面加载完毕，请求用户信息
+            $.get("user/findLogin", {}, function (data) {
+                if (data["flag"]) {
+                    $("#span-nickname").html(data["data"].nickname);
+                    $("#uid-input").val(data["data"].uid);
+                } else {
+                    location.href = "Login.html";
                 }
+            });
+
+            // 请求后台购物车信息
+            $.get("shopping/findByUid", {"uid": location.search.split("=")[1]}, function (data) {
+                for (let i = 0; i < data.length; i++) {
+                    let tr = `<tr id="tr-${data[i]["sid"]}">
+                        <th scope="row">${i + 1}</th>
+                        <td>${data[i].title}</td>
+                        <td>${data[i].price}</td>
+                        <td>${data[i].number}</td>
+                        <td>
+                            <div class="delete-div" id=${data[i]["sid"]}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                                 class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </div>
+                        </td>
+                    </tr>`;
+                    $("#cart-tbody").append(tr);
+                }
+
+                // 给删除添加事件
+                $(".delete-div").click(function () {
+                    let sid = this.id;
+                    $.get("shopping/remove", {"sid": this.id}, function () {
+                        $("#tr-" + sid).remove();
+                    })
+                });
             });
         })
     </script>
@@ -48,7 +79,6 @@
         <p>Please view in <span>full page</span> mode</p>
     </div>
 </a>
-
 <section class="htmleaf-container">
     <header class="htmleaf-header">
         <h1>购物车<span>List</span></h1>
@@ -61,6 +91,14 @@
     </header>
 </section>
 
+<!--个人信息-->
+<div class="user-info">
+    <span id="span-nickname"></span>
+    <a href="user/logout">退出登陆</a>
+    <input type="number" hidden id="uid-input">
+</div>
+
+<!--购物车列表-->
 <section>
     <table class="table table-hover table-dark mx-auto" style="width: 1200px">
         <thead>
@@ -72,47 +110,25 @@
             <th scope="col">删除</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-            <td>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-            </td>
-
-        </tr>
+        <tbody id="cart-tbody">
+        <!--        <tr>-->
+        <!--            <th scope="row">1</th>-->
+        <!--            <td>Mark</td>-->
+        <!--            <td>Otto</td>-->
+        <!--            <td>@mdo</td>-->
+        <!--            <td>-->
+        <!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
+        <!--                     class="bi bi-x-circle" viewBox="0 0 16 16">-->
+        <!--                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+        <!--                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>-->
+        <!--                </svg>-->
+        <!--            </td>-->
+        <!--        </tr>-->
         </tbody>
     </table>
 </section>
 
+<!--合计表格-->
 <section>
     <table class="table table-hover table-dark mx-auto" style="width: 1200px">
         <thead>
@@ -122,14 +138,17 @@
             <th scope="col">元</th>
         </tr>
         </thead>
+        <tbody>
     </table>
 </section>
 
+<!--一键购买-->
 <footer class="r">
     <div>
         <button type="button" class="btn btn-secondary btn-lg btn-block">一键购买</button>
     </div>
 </footer>
+
 <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

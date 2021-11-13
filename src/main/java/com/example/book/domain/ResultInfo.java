@@ -5,6 +5,15 @@ public class ResultInfo {
     private String errorMsg;    // 错误信息
     private Object data;        // 请求成功返回的对象
 
+    @Override
+    public String toString() {
+        return "ResultInfo{" +
+                "flag=" + flag +
+                ", errorMsg='" + errorMsg + '\'' +
+                ", data=" + data +
+                '}';
+    }
+
     public boolean isFlag() {
         return flag;
     }

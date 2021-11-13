@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 
 public class BaseServlet extends HttpServlet {
@@ -31,4 +32,17 @@ public class BaseServlet extends HttpServlet {
         mapper.writeValue(response.getOutputStream(), obj);
     }
 
+    public void printObj(String name, Object obj) {
+        System.out.println(name);
+        System.out.println("\t" + obj);
+        System.out.println(name + "\n");
+    }
+
+    public void printList(String name, List<?> list) {
+        System.out.println(name);
+        for (Object o : list) {
+            System.out.println("\t" + o);
+        }
+        System.out.println(name + "\n");
+    }
 }

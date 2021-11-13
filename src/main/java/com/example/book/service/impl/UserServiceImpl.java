@@ -24,25 +24,8 @@ public class UserServiceImpl implements UserService {
             return false;
         } else {
             // 用户名不存在，可以注册
-            user.setCode(UUIDUtil.getUUID());
-            System.out.println("Service: " + user);
-
             dao.add(user);
-
-            String text = "<a href='http://localhost:8080/book/user/active?code=" + user.getCode() + "'>点击激活账号</a>";
-            MailUtils.sendMail(user.getEmail(), text, "激活邮件");
             return true;
         }
     }
-
-    @Override
-    public boolean active(String code) {
-        if (dao.findByCode(code) == null) {
-            return false;
-        } else {
-            dao.active(code);
-            return true;
-        }
-    }
-
 }

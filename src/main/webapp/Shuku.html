@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>藏书阁</title>
+
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/shuku.css">
     <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/user-info.css">
+
     <style>
         #gallery-wrapper {
             position: relative;
@@ -27,7 +30,7 @@
             position: absolute;
             background: white;
             border-radius: 5px;
-            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
             padding: 10px;
         }
 
@@ -50,18 +53,22 @@
     </style>
 
     <script src="jquery/jquery-3.6.0.min.js"></script>
-
     <script>
         $(function () {
             // 页面加载完毕，请求后台返回书库
             $.get("book/findAll", {}, function (books) {
+                let priceMap = new Map();
+
                 for (let i = 0; i < books.length; i++) {
                     let book = `<article class="white-panel">
                                     <img src="img/${books[i]["picture"]}" class="thumb">
                                     <h1><a href="Details.html?bid=${books[i]["bid"]}">${books[i]["title"]}</a></h1>
                                     <p>售价：${books[i]["price"]}￥</p>
-                                    <div class="add-to-cart">添加到购物车</div>
+                                    <div class="add-to-cart" id = ${books[i]["bid"]}>添加到购物车</div>
                                 </article>`;
+
+                    // 将价格设置到 priceMap 中
+                    priceMap.set(books[i]["bid"] + "", books[i]["price"]);
                     $("#gallery-wrapper").append(book);
                 }
 
@@ -71,13 +78,29 @@
                     let cartNumber = $("#cart-number");
                     let number = parseInt(cartNumber.html());
                     cartNumber.html(number + 1);
+
+                    // 请求后台，将记录加入后台
+                    $.get("shopping/add", {
+                        "uid": $("#uid").val(),
+                        "bid": this.id,
+                        "price": priceMap.get(this.id)
+                    });
                 });
             });
 
+            // 页面加载完毕，请求用户信息
+            $.get("user/findLogin", {}, function (data) {
+                if (data["flag"]) {
+                    $("#span-nickname").html(data["data"].nickname);
+                    $("#uid").val(data["data"].uid);
+                } else {
+                    location.href = "Login.html";
+                }
+            })
 
             // 点击购物车跳转购物车页面
             $("#shopping-cart").click(function () {
-                location.href = "Shoplist.html";
+                location.href = "Shoplist.html?uid=" + $("#uid").val();
             })
         });
     </script>
@@ -111,15 +134,19 @@
     </header>
 </section>
 
+<div class="user-info">
+    <span id="span-nickname"></span>
+    <a href="user/logout">退出登陆</a>
+</div>
 
 <!--书籍面板-->
 <section id="gallery-wrapper">
-<!--    <article class="white-panel">-->
-<!--        <img src="img/1.jpg" class="thumb">-->
-<!--        <h1><a href="Details.html">《白夜行》</a></h1>-->
-<!--        <p>售价：32￥</p>-->
-<!--        <div class="add-to-cart">添加到购物车</div>-->
-<!--    </article>-->
+    <!--    <article class="white-panel">-->
+    <!--        <img src="img/1.jpg" class="thumb">-->
+    <!--        <h1><a href="Details.html">《白夜行》</a></h1>-->
+    <!--        <p>售价：32￥</p>-->
+    <!--        <div class="add-to-cart">添加到购物车</div>-->
+    <!--    </article>-->
 </section>
 
 
@@ -132,7 +159,9 @@
     </svg>
     <!--书籍数量-->
     <span id="cart-number" class="cart-number">0</span>
+    <input hidden type="number" id="uid">
 </div>
+
 
 <script src="js/pinterest_grid.js"></script>
 <script type="text/javascript">

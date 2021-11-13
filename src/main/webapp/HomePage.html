@@ -5,29 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony图书网</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/user-info.css">
+
     <script src="jquery/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
-            $.get("user/getUser",{},function (data) {
-               if (data["flag"]){
-                   // 已经登陆
-                   $("#login-btn").hide();
-                   $("#logout-btn").show();
-                   $("#username").html(data["data"].username);
-               }else {
-                   $("#login-btn").show();
-                   $("#logout-btn").hide();
-               }
+            $.get("user/findLogin", {}, function (data) {
+                if (data["flag"]) {
+                    // 已经登陆
+                    $("#login-btn").hide();
+                    $("#logout-btn").show();
+                    $("#username").html(data["data"].nickname);
+                } else {
+                    $("#login-btn").show();
+                    $("#logout-btn").hide();
+                }
             });
 
             // 藏书阁按钮
             $("#shuku-btn").click(function () {
-                $.get("user/getUser",{},function (data) {
-                    if (data["flag"]){
+                $.get("user/findLogin", {}, function (data) {
+                    if (data["flag"]) {
                         location.href = "Shuku.html";
-                    }else {
+                    } else {
                         location.href = "Login.html";
                     }
                 });
@@ -35,10 +37,10 @@
 
             // 购物车按钮
             $("#shopping-cart-btn").click(function () {
-                $.get("user/getUser",{},function (data) {
-                    if (data["flag"]){
+                $.get("user/findLogin", {}, function (data) {
+                    if (data["flag"]) {
                         location.href = "Shoplist.html";
-                    }else {
+                    } else {
                         location.href = "Login.html";
                     }
                 });
@@ -46,10 +48,10 @@
 
             // 我的按钮
             $("#mine-btn").click(function () {
-                $.get("user/getUser",{},function (data) {
-                    if (data["flag"]){
+                $.get("user/findLogin", {}, function (data) {
+                    if (data["flag"]) {
                         location.href = "User.html";
-                    }else {
+                    } else {
                         location.href = "Login.html";
                     }
                 });
@@ -75,11 +77,10 @@
     Hi
 </a>
 
-
-<a id="logout-btn" href="user/logout" target="_self" rel="nofollow" class="menu-btn js-menu-btn">
+<div id="logout-btn" rel="nofollow" class="menu-btn js-menu-btn">
     <span id="username" style="color: white; margin-right: 10px"></span>
-    <div id="logout" class="menu-btn__text">退出登陆</div>
-</a>
+    <a class="menu-btn__text" href="user/logout">退出登陆</a>
+</div>
 
 <a id="login-btn" href="Login.html" target="_self" rel="nofollow" class="menu-btn js-menu-btn">
     <div class="menu-btn__circles">
@@ -189,7 +190,9 @@
         <article class="slide slide--1 js-slide">
             <div class="slide__inner">
                 <div class="slide__sub-title"><span>上新</span></div>
-                <h1 class="slide__title"><div class="js-transition-title">《白夜行》</div></h1>
+                <h1 class="slide__title">
+                    <div class="js-transition-title">《白夜行》</div>
+                </h1>
                 <div class="slide__img slide__img--proxy"></div>
                 <div class="slide__project">作者：【日】东野圭吾</div>
             </div>
@@ -198,7 +201,9 @@
         <article class="slide slide--2 js-slide">
             <div class="slide__inner">
                 <div class="slide__sub-title"><span>上新</span></div>
-                <h1 class="slide__title"><div class="js-transition-title">《追风筝的人》</div></h1>
+                <h1 class="slide__title">
+                    <div class="js-transition-title">《追风筝的人》</div>
+                </h1>
                 <div class="slide__img slide__img--proxy"></div>
                 <div class="slide__project">作者：【美】卡勒德·胡赛尼</div>
             </div>
@@ -264,6 +269,6 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
 <script src='js/imagesloaded.pkgd.min.js'></script>
-<script  src="./js/script.js"></script>
+<script src="./js/script.js"></script>
 </body>
 </html>

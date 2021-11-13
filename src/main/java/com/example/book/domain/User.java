@@ -7,8 +7,6 @@ public class User {
     private String password;    // 密码
     private String email;       // 邮箱
     private String nickname;    // 昵称
-    private String state;       // 激活状态
-    private String code;        // 激活码
 
     @Override
     public String toString() {
@@ -18,25 +16,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", state='" + state + '\'' +
-                ", code='" + code + '\'' +
                 '}';
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public int getUid() {

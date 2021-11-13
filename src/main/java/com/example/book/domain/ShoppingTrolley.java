@@ -1,20 +1,23 @@
 package com.example.book.domain;
 
-public class shoppingTrolley {
+public class ShoppingTrolley {
     private int sid;
     private int uid;
     private int bid;
     private int number;
     private double price;
 
+    private String title;
+
     @Override
     public String toString() {
-        return "shoppingTrolley{" +
+        return "ShoppingTrolley{" +
                 "sid=" + sid +
                 ", uid=" + uid +
                 ", bid=" + bid +
                 ", number=" + number +
                 ", price=" + price +
+                ", title='" + title + '\'' +
                 '}';
     }
 
@@ -56,5 +59,13 @@ public class shoppingTrolley {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

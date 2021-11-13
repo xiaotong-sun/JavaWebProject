@@ -12,9 +12,4 @@ public interface UserDao {
     // 添加一个用户
     void add(User user);
 
-    // 根据激活码激活一个用户
-    void active(String code);
-
-    // 根据激活码查询用户
-    User findByCode(String code);
 }

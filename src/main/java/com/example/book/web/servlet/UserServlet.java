@@ -70,7 +70,6 @@ public class UserServlet extends BaseServlet {
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-        System.out.println("Servlet: " + user);
 
         // 进行注册
         boolean flag = service.register(user);
@@ -79,30 +78,18 @@ public class UserServlet extends BaseServlet {
         if (flag) {
             // 注册成功
             info.setFlag(true);
-//            info.setData(user);
         } else {
             // 注册失败
             info.setFlag(false);
             info.setErrorMsg("用户名重复！");
         }
+
         writeValue(info, response);
+        printObj("----user/register", user);
     }
 
-    public void active(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String code = request.getParameter("code");
-
-        boolean flag = service.active(code);
-        if (flag) {
-            // 激活成功
-            response.sendRedirect(request.getContextPath() + "/HomePage.html");
-        } else {
-            // 激活失败
-            response.sendRedirect(request.getContextPath() + "/regist_error.html");
-        }
-
-    }
-
-    public void getUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // 查询用户是否登陆
+    public void findLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ResultInfo info = new ResultInfo();
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
@@ -112,11 +99,11 @@ public class UserServlet extends BaseServlet {
             info.setFlag(false);
         }
         writeValue(info, response);
+        printObj("----user/findLogin", info);
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
-
         response.sendRedirect(request.getContextPath() + "/HomePage.html");
     }
 }

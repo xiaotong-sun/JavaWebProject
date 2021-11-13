@@ -11,7 +11,4 @@ public interface UserService {
     // 注册一个用户
     boolean register(User user);
 
-    // 激活一个用户
-    boolean active(String code);
-
 }
