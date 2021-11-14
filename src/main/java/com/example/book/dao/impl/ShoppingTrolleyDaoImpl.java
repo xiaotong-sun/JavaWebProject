@@ -48,4 +48,10 @@ public class ShoppingTrolleyDaoImpl implements ShoppingTrolleyDao {
         String sql = "delete from shopping_trolley where sid = ?";
         template.update(sql, sid);
     }
+
+    @Override
+    public void removeByUid(int uid) {
+        String sql = "delete from shopping_trolley where uid = ?";
+        template.update(sql, uid);
+    }
 }

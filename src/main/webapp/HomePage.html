@@ -39,7 +39,7 @@
             $("#shopping-cart-btn").click(function () {
                 $.get("user/findLogin", {}, function (data) {
                     if (data["flag"]) {
-                        location.href = "Shoplist.html";
+                        location.href = "Shoplist.html?uid=" + data["data"].uid;
                     } else {
                         location.href = "Login.html";
                     }
@@ -79,6 +79,7 @@
 
 <div id="logout-btn" rel="nofollow" class="menu-btn js-menu-btn">
     <span id="username" style="color: white; margin-right: 10px"></span>
+    <input type="number" hidden id="uid-input">
     <a class="menu-btn__text" href="user/logout">退出登陆</a>
 </div>
 

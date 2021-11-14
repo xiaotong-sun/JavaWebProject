@@ -1,5 +1,6 @@
 package com.example.book.web.servlet;
 
+import com.example.book.domain.ResultInfo;
 import com.example.book.domain.ShoppingTrolley;
 import com.example.book.service.ShoppingTrolleyService;
 import com.example.book.service.impl.ShoppingTrolleyServiceImpl;
@@ -48,5 +49,21 @@ public class ShoppingTrolleyServlet extends BaseServlet {
         service.remove(sid);
 
         printObj("----shopping/remove", sid);
+    }
+
+    public void find(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String uid = request.getParameter("uid");
+        List<ShoppingTrolley> carts = service.findByUid(uid);
+        ResultInfo info = new ResultInfo();
+
+        if (carts != null && carts.size() != 0) {
+            info.setFlag(true);
+            info.setData(carts.size());
+        } else {
+            info.setFlag(false);
+        }
+        writeValue(info, response);
+
+        printObj("----shopping/find", info);
     }
 }

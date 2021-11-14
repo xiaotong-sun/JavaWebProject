@@ -1,143 +1,176 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>详情</title>
-	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>详情</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <script>
+        document.documentElement.className = "js";
+        var supportsCssVars = function () {
+            var e, t = document.createElement("style");
+            return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e
+        };
+        supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
+    </script>
 </head>
 <body class="loading">
-		<svg class="hidden">
-			<symbol id="icon-arrow" viewBox="0 0 24 24">
-				<title>arrow</title>
-				<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
-			</symbol>
-			<symbol id="icon-drop" viewBox="0 0 24 24">
-				<title>drop</title>
-				<path d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z"/><path d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z"/>
-			</symbol>
-			<symbol id="icon-caret" viewBox="0 0 24 13">
-				<title>caret</title>
-				<path d="M23.646.328a.842.842 0 0 0-1.19 0l-10.459 10.48L1.517.328a.842.842 0 0 0-1.189 1.19L11.382 12.57c.164.164.369.246.595.246.205 0 .43-.082.594-.246L23.625 1.518a.824.824 0 0 0 .02-1.19z"/>
-			</symbol>
-		</svg>
-		<main>
-			<div class="content content--fixed">
-				<header class="codrops-header">
-					<div class="codrops-links">
-						<a class="codrops-icon codrops-icon--prev" href="Shuku.html" title="返回藏书阁"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></a>
-						<a class="codrops-icon codrops-icon--drop" href="HomePage.html" title="首页"><svg class="icon icon--drop"><use xlink:href="#icon-drop"></use></svg></a>
-					</div>
-					<h1 class="codrops-header__title">TONY BOOKSTORE</h1>
-				</header>
-			</div>
-			<div class="slideshow">
-				<div class="slide">
-					<div class="preview">
-						<div class="preview__img-wrap">
-							<div class="preview__img" style="background-image: url(img/0.jpg);"></div>
-							<div class="preview__img-reveal"></div>
-						</div>
-						<h3 class="preview__title">《白夜行》</h3>
-						<div class="preview__content">
-							<p>本书是东野圭吾当之无愧的鸿篇巨制，全书故事跨越19年时间，登场人物超过50个，草蛇灰线伏脉千里，情节线索纵横交错又丝丝入扣，用一桩离奇命案牵出案件相关人跨越19年惊心动魄的故事、悲凉的爱情、吊诡的命运、令人发指的犯罪、白描又生动的社会图景、复杂人性的对决与救赎，读来令人叹为观止。.</p>
-						</div>
-					</div>
-					<div class="slide__img-wrap">
-						<div class="slide__img" style="background-image: url(img/1.jpg);"></div>
-						<div class="slide__img-reveal"></div>
-					</div>
-					<span class="slide__number">#01</span>
-					<h2 class="slide__title">《白夜行》</h2>
-				</div>
+<svg class="hidden">
+    <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <title>arrow</title>
+        <polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
+    </symbol>
+    <symbol id="icon-drop" viewBox="0 0 24 24">
+        <title>drop</title>
+        <path d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z"/>
+        <path d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z"/>
+    </symbol>
+    <symbol id="icon-caret" viewBox="0 0 24 13">
+        <title>caret</title>
+        <path d="M23.646.328a.842.842 0 0 0-1.19 0l-10.459 10.48L1.517.328a.842.842 0 0 0-1.189 1.19L11.382 12.57c.164.164.369.246.595.246.205 0 .43-.082.594-.246L23.625 1.518a.824.824 0 0 0 .02-1.19z"/>
+    </symbol>
+</svg>
+<main>
+    <div class="content content--fixed">
+        <header class="codrops-header">
+            <div class="codrops-links">
+                <a class="codrops-icon codrops-icon--prev" href="Shuku.html" title="返回藏书阁">
+                    <svg class="icon icon--arrow">
+                        <use xlink:href="#icon-arrow"></use>
+                    </svg>
+                </a>
+                <a class="codrops-icon codrops-icon--drop" href="HomePage.html" title="首页">
+                    <svg class="icon icon--drop">
+                        <use xlink:href="#icon-drop"></use>
+                    </svg>
+                </a>
+            </div>
+            <h1 class="codrops-header__title">TONY BOOKSTORE</h1>
+        </header>
+    </div>
+    <div class="slideshow">
+        <div class="slide">
+            <div class="preview">
+                <div class="preview__img-wrap">
+                    <div class="preview__img" style="background-image: url(img/0.jpg);"></div>
+                    <div class="preview__img-reveal"></div>
+                </div>
+                <h3 class="preview__title">《白夜行》</h3>
+                <div class="preview__content">
+                    <p>
+                        本书是东野圭吾当之无愧的鸿篇巨制，全书故事跨越19年时间，登场人物超过50个，草蛇灰线伏脉千里，情节线索纵横交错又丝丝入扣，用一桩离奇命案牵出案件相关人跨越19年惊心动魄的故事、悲凉的爱情、吊诡的命运、令人发指的犯罪、白描又生动的社会图景、复杂人性的对决与救赎，读来令人叹为观止。.</p>
+                </div>
+            </div>
+            <div class="slide__img-wrap">
+                <div class="slide__img" style="background-image: url(img/1.jpg);"></div>
+                <div class="slide__img-reveal"></div>
+            </div>
+            <span class="slide__number">#01</span>
+            <h2 class="slide__title">《白夜行》</h2>
+        </div>
 
-				<div class="slide">
-					<div class="preview">
-						<div class="preview__img-wrap">
-							<div class="preview__img" style="background-image: url(img/project2.jpg);"></div>
-							<div class="preview__img-reveal"></div>
-						</div>
-						<h3 class="preview__title">Jackardi Jack</h3>
-						<div class="preview__content">
-							<p>You’re not your job. You’re not how much money you have in the bank. You’re not the car you drive. You’re not the contents of your wallet. You’re not your f***ing khakis. You’re the all-singing, all-dancing crap of the world. What do you want? Wanna go back to the s*** job, f***in’ condo world, watching sitcoms? F*** you, I won’t do it. Fifth rule: one fight at a time, fellas.</p>
-						</div>
-					</div>
-					<div class="slide__img-wrap">
-						<div class="slide__img" style="background-image: url(img/2.jpg);"></div>
-						<div class="slide__img-reveal"></div>
-					</div>
-					<span class="slide__number">#02</span>
-					<h3 class="slide__title">Jackardi</h3>
-				</div>
-				<div class="slide">
-					<div class="preview">
-						<div class="preview__img-wrap">
-							<div class="preview__img" style="background-image: url(img/project3.jpg);"></div>
-							<div class="preview__img-reveal"></div>
-						</div>
-						<h3 class="preview__title">Hostabili Hell</h3>
-						<div class="preview__content">
-							<p>You’re not your job. You’re not how much money you have in the bank. You’re not the car you drive. You’re not the contents of your wallet. You’re not your f***ing khakis. You’re the all-singing, all-dancing crap of the world. What do you want? Wanna go back to the s*** job, f***in’ condo world, watching sitcoms? F*** you, I won’t do it. Fifth rule: one fight at a time, fellas.</p>
-						</div>
-					</div>
-					<div class="slide__img-wrap">
-						<div class="slide__img" style="background-image: url(img/3.jpg);"></div>
-						<div class="slide__img-reveal"></div>
-					</div>
-					<span class="slide__number">#03</span>
-					<h3 class="slide__title">Hostabili</h3>
-				</div>
-				<div class="slide">
-					<div class="preview">
-						<div class="preview__img-wrap">
-							<div class="preview__img" style="background-image: url(img/project4.jpg);"></div>
-							<div class="preview__img-reveal"></div>
-						</div>
-						<h3 class="preview__title">Tellawa Tell</h3>
-						<div class="preview__content">
-							<p>You’re not your job. You’re not how much money you have in the bank. You’re not the car you drive. You’re not the contents of your wallet. You’re not your f***ing khakis. You’re the all-singing, all-dancing crap of the world. What do you want? Wanna go back to the s*** job, f***in’ condo world, watching sitcoms? F*** you, I won’t do it. Fifth rule: one fight at a time, fellas.</p>
-						</div>
-					</div>
-					<div class="slide__img-wrap">
-						<div class="slide__img" style="background-image: url(img/4.jpg);"></div>
-						<div class="slide__img-reveal"></div>
-					</div>
-					<span class="slide__number">#04</span>
-					<h3 class="slide__title">Tellawa</h3>
-				</div>
-				<div class="slide">
-					<div class="preview">
-						<div class="preview__img-wrap">
-							<div class="preview__img" style="background-image: url(img/project5.jpg);"></div>
-							<div class="preview__img-reveal"></div>
-						</div>
-						<h3 class="preview__title">Lochnox Lox</h3>
-						<div class="preview__content">
-							<p>You’re not your job. You’re not how much money you have in the bank. You’re not the car you drive. You’re not the contents of your wallet. You’re not your f***ing khakis. You’re the all-singing, all-dancing crap of the world. What do you want? Wanna go back to the s*** job, f***in’ condo world, watching sitcoms? F*** you, I won’t do it. Fifth rule: one fight at a time, fellas.</p>
-						</div>
-					</div>
-					<div class="slide__img-wrap">
-						<div class="slide__img" style="background-image: url(img/5.jpg);"></div>
-						<div class="slide__img-reveal"></div>
-					</div>
-					<span class="slide__number">#05</span>
-					<h3 class="slide__title">Lochnox</h3>
-				</div>
-				<nav class="slidenav">
-					<button class="slidenav__item slidenav__item--prev">Previous</button>
-					<button class="slidenav__item slidenav__item--next">Next</button>
-					<button class="slidenav__preview">
-						<svg class="icon icon--caret">
-							<use xlink:href="#icon-caret"></use>
-						</svg>
-					</button>
-				</nav>
-			</div>
-		</main>
-		<script src="js/imagesloaded.pkgd.min.js"></script>
-		<script src="js/TweenMax.min.js"></script>
-		<script src="js/demo.js"></script>
-	</body>
+        <div class="slide">
+            <div class="preview">
+                <div class="preview__img-wrap">
+                    <div class="preview__img" style="background-image: url(img/project2.jpg);"></div>
+                    <div class="preview__img-reveal"></div>
+                </div>
+                <h3 class="preview__title">Jackardi Jack</h3>
+                <div class="preview__content">
+                    <p>You’re not your job. You’re not how much money you have in the bank. You’re not the car you
+                        drive. You’re not the contents of your wallet. You’re not your f***ing khakis. You’re the
+                        all-singing, all-dancing crap of the world. What do you want? Wanna go back to the s*** job,
+                        f***in’ condo world, watching sitcoms? F*** you, I won’t do it. Fifth rule: one fight at a time,
+                        fellas.</p>
+                </div>
+            </div>
+            <div class="slide__img-wrap">
+                <div class="slide__img" style="background-image: url(img/2.jpg);"></div>
+                <div class="slide__img-reveal"></div>
+            </div>
+            <span class="slide__number">#02</span>
+            <h3 class="slide__title">Jackardi</h3>
+        </div>
+        <div class="slide">
+            <div class="preview">
+                <div class="preview__img-wrap">
+                    <div class="preview__img" style="background-image: url(img/project3.jpg);"></div>
+                    <div class="preview__img-reveal"></div>
+                </div>
+                <h3 class="preview__title">Hostabili Hell</h3>
+                <div class="preview__content">
+                    <p>You’re not your job. You’re not how much money you have in the bank. You’re not the car you
+                        drive. You’re not the contents of your wallet. You’re not your f***ing khakis. You’re the
+                        all-singing, all-dancing crap of the world. What do you want? Wanna go back to the s*** job,
+                        f***in’ condo world, watching sitcoms? F*** you, I won’t do it. Fifth rule: one fight at a time,
+                        fellas.</p>
+                </div>
+            </div>
+            <div class="slide__img-wrap">
+                <div class="slide__img" style="background-image: url(img/3.jpg);"></div>
+                <div class="slide__img-reveal"></div>
+            </div>
+            <span class="slide__number">#03</span>
+            <h3 class="slide__title">Hostabili</h3>
+        </div>
+        <div class="slide">
+            <div class="preview">
+                <div class="preview__img-wrap">
+                    <div class="preview__img" style="background-image: url(img/project4.jpg);"></div>
+                    <div class="preview__img-reveal"></div>
+                </div>
+                <h3 class="preview__title">Tellawa Tell</h3>
+                <div class="preview__content">
+                    <p>You’re not your job. You’re not how much money you have in the bank. You’re not the car you
+                        drive. You’re not the contents of your wallet. You’re not your f***ing khakis. You’re the
+                        all-singing, all-dancing crap of the world. What do you want? Wanna go back to the s*** job,
+                        f***in’ condo world, watching sitcoms? F*** you, I won’t do it. Fifth rule: one fight at a time,
+                        fellas.</p>
+                </div>
+            </div>
+            <div class="slide__img-wrap">
+                <div class="slide__img" style="background-image: url(img/4.jpg);"></div>
+                <div class="slide__img-reveal"></div>
+            </div>
+            <span class="slide__number">#04</span>
+            <h3 class="slide__title">Tellawa</h3>
+        </div>
+        <div class="slide">
+            <div class="preview">
+                <div class="preview__img-wrap">
+                    <div class="preview__img" style="background-image: url(img/project5.jpg);"></div>
+                    <div class="preview__img-reveal"></div>
+                </div>
+                <h3 class="preview__title">Lochnox Lox</h3>
+                <div class="preview__content">
+                    <p>You’re not your job. You’re not how much money you have in the bank. You’re not the car you
+                        drive. You’re not the contents of your wallet. You’re not your f***ing khakis. You’re the
+                        all-singing, all-dancing crap of the world. What do you want? Wanna go back to the s*** job,
+                        f***in’ condo world, watching sitcoms? F*** you, I won’t do it. Fifth rule: one fight at a time,
+                        fellas.</p>
+                </div>
+            </div>
+            <div class="slide__img-wrap">
+                <div class="slide__img" style="background-image: url(img/5.jpg);"></div>
+                <div class="slide__img-reveal"></div>
+            </div>
+            <span class="slide__number">#05</span>
+            <h3 class="slide__title">Lochnox</h3>
+        </div>
+        <nav class="slidenav">
+            <button class="slidenav__item slidenav__item--prev">Previous</button>
+            <button class="slidenav__item slidenav__item--next">Next</button>
+            <button class="slidenav__preview">
+                <svg class="icon icon--caret">
+                    <use xlink:href="#icon-caret"></use>
+                </svg>
+            </button>
+        </nav>
+    </div>
+</main>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/demo.js"></script>
+</body>
 </html>

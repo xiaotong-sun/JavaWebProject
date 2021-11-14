@@ -93,15 +93,23 @@
                 if (data["flag"]) {
                     $("#span-nickname").html(data["data"].nickname);
                     $("#uid").val(data["data"].uid);
+
+                    // 请求用户信息后，请求后台购物车信息
+                    $.get("shopping/find", {"uid": data["data"].uid}, function (data) {
+                        if (data["flag"]) {
+                            $("#shopping-cart").addClass("shopping-cart-visible");
+                            $("#cart-number").html(data["data"]);
+                        }
+                    });
                 } else {
                     location.href = "Login.html";
                 }
-            })
+            });
 
             // 点击购物车跳转购物车页面
             $("#shopping-cart").click(function () {
                 location.href = "Shoplist.html?uid=" + $("#uid").val();
-            })
+            });
         });
     </script>
 </head>

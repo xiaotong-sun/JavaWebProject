@@ -14,7 +14,7 @@
     <script src="jquery/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
-            $.get("user/getUser", {}, function (data) {
+            $.get("user/findLogin", {}, function (data) {
                 if (data["flag"]) {
                     // 已经登陆
                     $("#login-btn").hide();

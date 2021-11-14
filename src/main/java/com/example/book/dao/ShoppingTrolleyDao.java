@@ -18,4 +18,6 @@ public interface ShoppingTrolleyDao {
 
     // 根据 sid 删除记录
     void removeBySid(int sid);
+
+    void removeByUid(int uid);
 }

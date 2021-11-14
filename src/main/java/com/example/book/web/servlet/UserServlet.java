@@ -58,7 +58,7 @@ public class UserServlet extends BaseServlet {
         writeValue(info, response);
     }
 
-
+    // 注册用户
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         Map<String, String[]> map = request.getParameterMap();
@@ -102,6 +102,7 @@ public class UserServlet extends BaseServlet {
         printObj("----user/findLogin", info);
     }
 
+    // 退出登陆
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
         response.sendRedirect(request.getContextPath() + "/HomePage.html");
