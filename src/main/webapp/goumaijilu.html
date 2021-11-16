@@ -5,27 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony图书网</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/shuku.css">
     <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/user-info.css">
+
     <script src="jquery/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
+            // 页面加载完毕，请求用户信息
             $.get("user/findLogin", {}, function (data) {
                 if (data["flag"]) {
-                    // 已经登陆
-                    $("#login-btn").hide();
-                    $("#logout-btn").show();
-                    $("#username").html(data["data"].username);
+                    $("#span-nickname").html(data["data"].nickname);
+                    $("#uid-input").val(data["data"].uid);
+
+                    // 获取 uid 之后请求购买记录
+                    $.get("purchase/search", {"uid": data["data"].uid}, function (data) {
+                        for (let i = 0; i < data.length; i++) {
+                            let tr = `<tr>
+                                    <th scope="row">${i+1}</th>
+                                    <td>${data[i].title}</td>
+                                    <td>${data[i].price}</td>
+                                    <td>${data[i].number}</td>
+                                    <td>${data[i].time}</td>
+                                </tr>`
+                            $("#record-tbody").append(tr);
+                        }
+                    });
                 } else {
-                    $("#login-btn").show();
-                    $("#logout-btn").hide();
+                    location.href = "Login.html";
                 }
             });
-        })
+        });
     </script>
 </head>
 <body>
@@ -54,6 +68,14 @@
     </header>
 </section>
 
+<!--个人信息-->
+<div class="user-info">
+    <span id="span-nickname"></span>
+    <a href="user/logout">退出登陆</a>
+    <input type="number" hidden id="uid-input">
+</div>
+
+<!--购买记录列表-->
 <section>
     <table class="table table-hover table-dark mx-auto" style="width: 1200px">
         <thead>
@@ -62,30 +84,22 @@
             <th scope="col">书籍</th>
             <th scope="col">价格</th>
             <th scope="col">数量</th>
+            <th scope="col">购买时间</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        <tbody id="record-tbody">
+<!--        <tr>-->
+<!--            <th scope="row">1</th>-->
+<!--            <td>Mark</td>-->
+<!--            <td>Otto</td>-->
+<!--            <td>@mdo</td>-->
+<!--            <td>购买时间</td>-->
+<!--        </tr>-->
         </tbody>
     </table>
 </section>
 
 <script src="js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

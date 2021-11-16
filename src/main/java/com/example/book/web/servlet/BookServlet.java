@@ -24,4 +24,12 @@ public class BookServlet extends BaseServlet {
         }
         System.out.println("----book/findAll\n");
     }
+
+    public void findRangeByBid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String bid = request.getParameter("bid");
+        List<Book> bookList = service.findRangeByBid(bid);
+
+        writeValue(bookList, response);
+        printList("----book/findRangeByBid", bookList);
+    }
 }

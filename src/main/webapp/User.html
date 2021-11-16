@@ -7,13 +7,15 @@
     <title>我的</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/default.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/user-info.css">
     <style type="text/css">
-        .demo{
+        .demo {
             padding: 2em 0;
             transform: translate3d(0, 0, 0);
         }
-        .navbar{
+
+        .navbar {
             width: 150px;
             height: 150px;
             line-height: 150px;
@@ -28,10 +30,12 @@
             color: #99b977;
             transition: 0.24s 0.2s;
         }
-        .navbar:hover{
+
+        .navbar:hover {
             background: rgba(255, 255, 255, 0.75);
         }
-        .navbar .menu{
+
+        .navbar .menu {
             list-style: none;
             padding: 0;
             margin: 0;
@@ -45,22 +49,26 @@
             transition: transform 1.4s 0.07s;
             z-index: -1;
         }
-        .navbar:hover .menu{
-            transition: transform 0.4s 0.08s, z-index   0s  0.5s;
+
+        .navbar:hover .menu {
+            transition: transform 0.4s 0.08s, z-index 0s 0.5s;
             transform: scale(1);
             z-index: 1;
         }
-        .navbar .menu li{
+
+        .navbar .menu li {
             position: absolute;
             top: -100px;
             left: -100px;
             transform-origin: 100px 100px;
             transition: all 0.5s 0.1s;
         }
-        .navbar:hover .menu li{
+
+        .navbar:hover .menu li {
             transition: all 0.6s;
         }
-        .navbar .menu li a{
+
+        .navbar .menu li a {
             width: 45px;
             height: 45px;
             line-height: 45px;
@@ -71,80 +79,113 @@
             color: #99b977;
             transition: 0.6s;
         }
-        .navbar:hover .menu li:nth-child(1){
+
+        .navbar:hover .menu li:nth-child(1) {
             transition-delay: 0.02s;
             transform: rotate(85deg);
         }
-        .navbar:hover .menu li:nth-child(1) a{
+
+        .navbar:hover .menu li:nth-child(1) a {
             transition-delay: 0.04s;
             transform: rotate(635deg);
         }
-        .navbar:hover .menu li:nth-child(2){
+
+        .navbar:hover .menu li:nth-child(2) {
             transition-delay: 0.04s;
             transform: rotate(125deg);
         }
-        .navbar:hover .menu li:nth-child(2) a{
+
+        .navbar:hover .menu li:nth-child(2) a {
             transition-delay: 0.08s;
             transform: rotate(595deg);
         }
-        .navbar:hover .menu li:nth-child(3){
+
+        .navbar:hover .menu li:nth-child(3) {
             transition-delay: 0.06s;
             transform: rotate(165deg);
         }
-        .navbar:hover .menu li:nth-child(3) a{
+
+        .navbar:hover .menu li:nth-child(3) a {
             transition-delay: 0.12s;
             transform: rotate(555deg);
         }
-        .navbar:hover .menu li:nth-child(4){
+
+        .navbar:hover .menu li:nth-child(4) {
             transition-delay: 0.08s;
             transform: rotate(205deg);
         }
-        .navbar:hover .menu li:nth-child(4) a{
+
+        .navbar:hover .menu li:nth-child(4) a {
             transition-delay: 0.16s;
             transform: rotate(515deg);
         }
-        .navbar:hover .menu li:nth-child(5){
+
+        .navbar:hover .menu li:nth-child(5) {
             transition-delay: 0.1s;
             transform: rotate(245deg);
         }
-        .navbar:hover .menu li:nth-child(5) a{
+
+        .navbar:hover .menu li:nth-child(5) a {
             transition-delay: 0.2s;
             transform: rotate(475deg);
         }
-        .navbar:hover .menu li:nth-child(6){
+
+        .navbar:hover .menu li:nth-child(6) {
             transition-delay: 0.12s;
             transform: rotate(285deg);
         }
-        .navbar:hover .menu li:nth-child(6) a{
+
+        .navbar:hover .menu li:nth-child(6) a {
             transition-delay: 0.24s;
             transform: rotate(435deg);
         }
-        .navbar:hover .menu li:nth-child(7){
+
+        .navbar:hover .menu li:nth-child(7) {
             transition-delay: 0.14s;
             transform: rotate(325deg);
         }
-        .navbar:hover .menu li:nth-child(7) a{
+
+        .navbar:hover .menu li:nth-child(7) a {
             transition-delay: 0.28s;
             transform: rotate(395deg);
         }
-        .navbar:hover .menu li:nth-child(8){
+
+        .navbar:hover .menu li:nth-child(8) {
             transition-delay: 0.16s;
             transform: rotate(365deg);
         }
-        .navbar:hover .menu li:nth-child(8) a{
+
+        .navbar:hover .menu li:nth-child(8) a {
             transition-delay: 0.32s;
             transform: rotate(355deg);
         }
-        .navbar:hover .menu li:nth-child(9){
+
+        .navbar:hover .menu li:nth-child(9) {
             transition-delay: 0.18s;
             transform: rotate(405deg);
         }
-        .navbar:hover .menu li:nth-child(9) a{
+
+        .navbar:hover .menu li:nth-child(9) a {
             transition-delay: 0.36s;
             transform: rotate(315deg);
         }
     </style>
 
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            // 页面加载完毕，请求用户信息
+            $.get("user/findLogin", {}, function (data) {
+                if (data["flag"]) {
+                    $("#span-nickname").html(data["data"].nickname);
+                    $("#uid-input").val(data["data"].uid);
+                } else {
+                    location.href = "Login.html";
+                }
+            });
+        });
+    </script>
+</head>
 <body>
 
 <figure class="logo logo--top js-trigger">
@@ -163,11 +204,21 @@
     <header class="htmleaf-header">
         <h1>我的 <span>Mine</span></h1>
         <div class="htmleaf-links">
-            <a class="htmleaf-icon icon-htmleaf-home-outline" href="HomePage.html" title="首页" target="_self"><span> 首页</span></a>
-            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="Shuku.html" title="返回" target="_self"><span> 返回</span></a>
+            <a class="htmleaf-icon icon-htmleaf-home-outline" href="HomePage.html" title="首页"
+               target="_self"><span> 首页</span></a>
+            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="Shuku.html" title="返回"
+               target="_self"><span> 返回</span></a>
         </div>
     </header>
 </section>
+
+<!--个人信息-->
+<div class="user-info">
+    <span id="span-nickname"></span>
+    <a href="user/logout">退出登陆</a>
+    <input type="number" hidden id="uid-input">
+</div>
+
 
 <div class="demo">
     <div class="container">
@@ -184,7 +235,7 @@
     </div>
 </div>
 
-<script src="jquery/jquery-3.6.0.min.js"></script>
+
 <script src="js/pinterest_grid.js"></script>
 </body>
 </html>

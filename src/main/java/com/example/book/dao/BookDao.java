@@ -13,4 +13,6 @@ public interface BookDao {
 
     // 通过 bid 查询书籍
     Book findByBid(int bid);
+
+    int findMaxBid();
 }
