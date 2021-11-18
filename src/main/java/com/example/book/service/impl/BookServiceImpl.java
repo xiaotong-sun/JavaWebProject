@@ -32,6 +32,26 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void add(Book book) {
+        dao.add(book);
+    }
 
+    @Override
+    public void remove(String bid) {
+        dao.removeByBid(Integer.parseInt(bid));
+    }
+
+    @Override
+    public boolean update(String _bid, String _num, String _price) {
+        int bid = Integer.parseInt(_bid);
+        int num = Integer.parseInt(_num);
+        int price = Integer.parseInt(_price);
+
+        Book book = dao.findByBid(bid);
+        if (book == null) {
+            return false;
+        } else {
+            dao.updateNumAndPriceByBid(bid, num, price);
+            return true;
+        }
     }
 }

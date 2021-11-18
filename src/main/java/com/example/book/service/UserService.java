@@ -11,4 +11,7 @@ public interface UserService {
     // 注册一个用户
     boolean register(User user);
 
+    boolean checkPassword(String uid, String oldPassword);
+
+    void updatePasswordByUid(String uid, String newPassword);
 }

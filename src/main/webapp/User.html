@@ -179,6 +179,7 @@
                 if (data["flag"]) {
                     $("#span-nickname").html(data["data"].nickname);
                     $("#uid-input").val(data["data"].uid);
+                    $("#updatePassword").prop("href", "gaimima.html?uid=" + data["data"].uid)
                 } else {
                     location.href = "Login.html";
                 }
@@ -226,7 +227,7 @@
             <div class="col-md-12">
                 <div class="navbar">工具
                     <ul class="menu">
-                        <li><a href="gaimima.html">密码</a></li>
+                        <li><a id="updatePassword" href="">密码</a></li>
                         <li><a href="goumaijilu.html">记录</a></li>
                     </ul>
                 </div>

@@ -12,4 +12,9 @@ public interface BookService {
     List<Book> findRangeByBid(String bid);
 
     void add(Book book);
+
+    void remove(String bid);
+
+    // 修改图书数据
+    boolean update(String bid, String num, String price);
 }

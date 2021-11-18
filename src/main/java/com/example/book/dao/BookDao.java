@@ -15,4 +15,10 @@ public interface BookDao {
     Book findByBid(int bid);
 
     int findMaxBid();
+
+    void removeByBid(int bid);
+
+    void add(Book book);
+
+    void updateNumAndPriceByBid(int bid, int num, int price);
 }

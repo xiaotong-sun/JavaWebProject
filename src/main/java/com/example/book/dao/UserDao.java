@@ -12,4 +12,7 @@ public interface UserDao {
     // 添加一个用户
     void add(User user);
 
+    User findByUid(int uid);
+
+    void updatePasswordByUid(int uid, String newPassword);
 }

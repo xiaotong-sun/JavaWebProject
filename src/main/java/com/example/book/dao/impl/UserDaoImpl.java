@@ -42,4 +42,21 @@ public class UserDaoImpl implements UserDao {
                 user.getEmail(),
                 user.getNickname());
     }
+
+    @Override
+    public User findByUid(int uid) {
+        String sql = "select * from user where uid = ?";
+        try {
+            return template.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), uid);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void updatePasswordByUid(int uid, String newPassword) {
+        String sql = "update user set password = ? where uid = ?";
+
+        template.update(sql, newPassword, uid);
+    }
 }

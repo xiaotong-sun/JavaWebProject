@@ -28,4 +28,15 @@ public class UserServiceImpl implements UserService {
             return true;
         }
     }
+
+    @Override
+    public boolean checkPassword(String uid, String oldPassword) {
+        User user = dao.findByUid(Integer.parseInt(uid));
+        return oldPassword.equals(user.getPassword());
+    }
+
+    @Override
+    public void updatePasswordByUid(String uid, String newPassword) {
+        dao.updatePasswordByUid(Integer.parseInt(uid), newPassword);
+    }
 }

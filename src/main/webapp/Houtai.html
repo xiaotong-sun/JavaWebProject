@@ -16,22 +16,66 @@
             // 请求后台获取书籍信息
             $.get("book/findAll", {}, function (books) {
                 for (let i = 0; i < books.length; i++) {
-                    let book = `<tr>
+                    let book = `<tr id="tr-${books[i]["bid"]}">
                             <th scope="row">${books[i]["bid"]}</th>
                             <td>${books[i]["title"]}</td>
                             <td>${books[i]["price"]}</td>
                             <td>${books[i]["inventory"]}</td>
                             <td>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                </svg>
+                                <div class="delete-div" id=${books[i]["bid"]}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </div>
                             </td>
                         </tr>`;
                     $("#book-tbody").append(book);
                 }
+
+                // 给删除添加事件
+                $(".delete-div").click(function () {
+                    let bid = this.id;
+                    $.get("book/remove", {"bid": bid}, function () {
+                        $("#tr-" + bid).remove();
+                    });
+                });
+
             });
 
+            // 添加书籍
+            $("#add-btn").click(function () {
+                let data = new FormData();
+                data.append("img", $("#img-file").prop("files")[0]);
+                data.append("title", $("#title").val());
+                data.append("publisher", $("#publisher").val());
+                data.append("inventory", $("#num").val());
+                data.append("price", $("#price").val());
+                data.append("introduction", $("#introduction").val());
+                console.log(data);
+
+                $.ajax({
+                    url: 'book/add',
+                    type: 'POST',
+                    data: data,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        $("#add-info").html("添加成功");
+                    }
+                });
+            });
+
+            $("#update-btn").click(function () {
+                $.get("book/update", $("#update-form").serialize(), function (data) {
+                    if(data["flag"]){
+                        $("#update-info").html("修改成功");
+                    }else{
+                        $("#update-info").html(data["errorMsg"]);
+                    }
+                })
+            });
 
         });
     </script>
@@ -118,32 +162,33 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-                <form id="book-form">
+                <form id="book-form" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">书籍编号</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1">
+                        <label for="title">书名</label>
+                        <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">出版商</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
+                        <label for="publisher">出版商</label>
+                        <input type="text" class="form-control" id="publisher" name="publisher">
                     </div>
                     <div class="form-group">
                         <label for="num">数量</label>
-                        <input type="number" class="form-control" id="num">
+                        <input type="number" class="form-control" id="num" name="inventory">
                     </div>
                     <div class="form-group">
                         <label for="price">价格</label>
-                        <input type="number" class="form-control" id="price">
+                        <input type="number" class="form-control" id="price" name="price">
                     </div>
                     <div class="form-group">
-                        <label for="describe">描述</label>
-                        <textarea class="form-control" id="describe" rows="3"></textarea>
+                        <label for="introduction">描述</label>
+                        <textarea class="form-control" id="introduction" rows="3" name="introduction"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">上传图片</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <label for="img-file">上传图片</label>
+                        <input type="file" class="form-control-file" id="img-file" name="img">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div id="add-btn" class="btn btn-primary">添加</div>
+                    <div id="add-info"></div>
                 </form>
             </div>
         </div>
@@ -159,20 +204,21 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
-                <form>
+                <form id="update-form">
                     <div class="form-group">
-                        <label for="ID">书籍编号</label>
-                        <input type="text" class="form-control" id="ID">
+                        <label for="bid">书籍编号</label>
+                        <input type="text" class="form-control" id="bid" name="bid">
                     </div>
                     <div class="form-group">
-                        <label for="price2">价格</label>
-                        <input type="number" class="form-control" id="price2">
+                        <label for="newPrice">价格</label>
+                        <input type="number" class="form-control" id="newPrice" name="newPrice">
                     </div>
                     <div class="form-group">
-                        <label for="num2">数量</label>
-                        <input type="number" class="form-control" id="num2">
+                        <label for="newNum">数量</label>
+                        <input type="number" class="form-control" id="newNum" name="newNum">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div id="update-btn" type="submit" class="btn btn-primary">修改</div>
+                    <div id="update-info"></div>
                 </form>
             </div>
         </div>

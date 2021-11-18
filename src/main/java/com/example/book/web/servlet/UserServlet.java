@@ -107,4 +107,22 @@ public class UserServlet extends BaseServlet {
         request.getSession().invalidate();
         response.sendRedirect(request.getContextPath() + "/HomePage.html");
     }
+
+    // 更新密码
+    public void updatePassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String uid = request.getParameter("uid");
+        String oldPassword = request.getParameter("old_password");
+        String newPassword = request.getParameter("new_password");
+
+        ResultInfo info = new ResultInfo();
+        if (service.checkPassword(uid, oldPassword)) {
+            // 原始密码正确
+            service.updatePasswordByUid(uid, newPassword);
+            info.setFlag(true);
+        } else {
+            info.setFlag(false);
+            info.setErrorMsg("原始密码不正确");
+        }
+        writeValue(info, response);
+    }
 }
