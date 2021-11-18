@@ -46,7 +46,7 @@ input{
     background-color: #2D2D3F;
 }
 .but{
-    width: 300px;
+    width: 30px;
     min-height: 20px;
     display: block;
     background-color: #4a77d4;
@@ -57,6 +57,10 @@ input{
     line-height: normal;
     border-radius: 5px;
     margin: 0;
+}
+
+.but:hover{
+    cursor: pointer;
 }
 
 #register {

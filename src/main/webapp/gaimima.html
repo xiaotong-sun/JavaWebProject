@@ -3,20 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>修改密码</title>
+  <!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
   <link rel="stylesheet" type="text/css" href="./css/Login.css"/>
   <script src="jquery/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function () {
+      // 给密码输入框添加一个失去焦点事件，判断两次密码是否一致
+      $("#password").blur(function () {
+        if ($("#new_password").val() !== $("#conformists").val()){
+          $("#password-msg").html("两次密码不一致");
+        }else {
+          $("#password-msg").html("");
+        }
+      });
+      $("#conformists").blur(function () {
+        if ($("#new_password").val() !== $("#conformists").val()){
+          $("#password-msg").html("两次密码不一致");
+        }else {
+          $("#password-msg").html("");
+        }
+      });
+
+      // 改密码按钮
+      $("#register-btn").click(function () {
+        $.get("user/register", $("#register-form").serialize(), function (data) {
+          if (data["flag"]){
+            // 注册成功，跳转到登陆页面
+            location.href = "Login.html";
+          }else {
+            // 注册失败，提示信息
+            $("#error-msg").html(data["errorMsg"]);
+          }
+        })
+      });
+    });
+  </script>
 </head>
 <body>
 <div id="login">
   <h1>密码修改</h1>
   <form id="login-form">
-    <input type="password" required="required" placeholder="原始密码" name="old password"/>
-    <input type="password" required="required" placeholder="新密码" name="password"/>
-    <input type="password" required="required" placeholder="确认密码" name="conformists"/>
-
-    <!--        验证码输入框-->
-    <input required name="verificationCode" type="text" placeholder="验证码">
-    <img id="code" src="VerificationCodeServlet" alt="">
+    <input id="old_password" type="password" required="required" placeholder="原始密码" name="old_password"/>
+    <input id="new_password" type="password" required="required" placeholder="新密码" name="new_password"/>
+    <input id="conformists" type="password" required="required" placeholder="确认密码" name="conformists"/>
+    <small id="password-msg" style="color: white"></small>
 
     <!--        登陆按钮-->
     <div id="login-btn" class="but" style="width: 30px">提交</div>
